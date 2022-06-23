@@ -1,0 +1,81 @@
+.BGGlass {
+  background-color: rgba(255, 255, 255, 0.26);
+  backdrop-filter: blur(5px);
+}
+
+.simple-shadow {
+  text-shadow: 5px 5px 15px black;
+}
+
+.imagenArticulos{
+  background-image: url("https://images.freejpg.com.ar/900/1704/group-friends-laughing-man-woman-people-happy-F100022196.jpg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+}
+
+.categoryBox{
+  border-bottom: 1px solid;
+  border-color: black;
+}
+
+@media only screen and (min-width: 1201px){
+  /* PANORAMICOS */
+  #BGGeneral3{
+    /* background-color: #aaa; */
+  }
+
+  .hero{
+    height: 60vh;
+    text-align: center;
+  }
+
+  /* LISA DE ACTIVIDADES */
+  #containerActividades{
+    display: grid;
+    grid-template-columns: auto auto auto ;
+    grid-column-gap: 3vmin;
+  }
+  
+  .cardActividades{
+    padding: 3px;
+    margin: 10px;
+  }
+  .cardActividades div img{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    padding: 5px;
+    background-size: cover;
+  }
+  .containerFormMas{
+    text-align: center;
+    width: 50%;
+    padding-left: 70px ;
+    padding-right: 70px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1200px){
+  /* NORMALES */
+  #BGGeneral3{
+    background-color: rgb(165, 11, 11);
+
+  }
+}
+
+@media (min-width: 500px) and (max-width: 768px){
+  /* TABLETS */
+  #BGGeneral3{
+    background-color: #7a2525;
+  }
+}
+
+@media only screen and (max-width: 499px){
+  /* MOVIL */
+  #BGGeneral3{
+    background-color: rgb(49, 136, 83);
+  }
+}

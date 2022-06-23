@@ -1,11 +1,7 @@
 <template>
- <footer class="footer">
+ <footer class="footer mt-5">
   <div class="content has-text-centered">
-    <p>
-      <strong>Bulma</strong> by <a href="https://jgthms.com">Jeremy Thomas</a>. The source code is licensed
-      <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-      is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY NC SA 4.0</a>.
-    </p>
+    <p>Aplicacion de <a href="https://www.linkedin.com/in/sebastian-jimenez-roman/" target="_blank" rel="noopener noreferrer">Sebastian jimenez</a>, Framework: <a href="https://vuejs.org/" target="_blank" rel="noopener noreferrer"> Vue.js</a>, API : <a href="https://openweathermap.org/"> Open Weather</a>, Hosting: <a href="https://firebase.google.com/?hl=es" target="_blank" rel="noopener noreferrer">Firebase</a>   </p>
   </div>
 </footer>
 </template>
@@ -19,9 +15,10 @@ export default {
 <style>
 footer {
   background-color: black;
-  position: absolute;
+  color: #262228 ;
+  position: relative;
   bottom: 0;
   width: 100%;
-  height: 40px;
+  height: 20px;
 }
 </style>

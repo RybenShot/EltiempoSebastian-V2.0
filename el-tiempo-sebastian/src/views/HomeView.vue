@@ -1,17 +1,16 @@
 <template>
-  <div class="home" id="BGGeneral">
+  <div class="home" >
+
+    <!-- HERO -->
     <section class="hero is-medium is-link" :class="[BGGeneral]">
       <div class="hero-body">
-        <p class="title simple-shadow">EL TIEMPO EN {{ city.toUpperCase() }}</p>
-      </div>
-      <font-awesome-icon icon="fa-solid fa-user-secret" />
-    </section>
+        <p class="title simple-shadow mb-1">EL TIEMPO EN</p>
+        <p class="title simple-shadow">{{ city.toUpperCase() }}</p>
 
-    <br />
+        <br>
 
-    <div class="BGGlass card py-2 mx-2" style="background-opacity='0.5'">
-      <div class="" >
-        <div class="select">
+        <!-- Selector de ciudad -->
+        <div class="select my-auto">
           <select v-model="city">
             <option value="malaga">Malaga</option>
             <option value="huelva">Huelva</option>
@@ -23,61 +22,156 @@
             <option value="sahara">Sahara</option>
           </select>
         </div>
+      </div>
+    </section> 
 
-        <br />
+      <br>
 
-        <h1 class="title has-text-light is-3 location simple-shadow">
-          {{ this.city }}
-        </h1>
-        <h1 class="subtitle has-text-light is-5 heading simple-shadow">
-          {{ this.heading }}
-        </h1>
+    <div class="BGGlass p-6 mx-2" style="background-opacity='0.5'">
+      <div class="columns">
 
-        <!-- Temperatura -->
+        <!--  Ciudad y comentario -->
+        <div class="column">
+          <div>
+            <p class="title has-text-dark is-3 location ">{{ this.city }}</p>
+            <p class="subtitle has-text-dark is-5 heading mb-1">{{ this.heading }}</p>
+            <p class="subtitle has-text-dark is-6 ">Dia: {{this.today.month}}/ {{this.today.year}}/ {{this.today.day}}</p>
+          </div>
+        </div>
 
-        <h1 class="subtitle has-text-light is-3 temp-value simple-shadow">
-          {{ this.tempValue }}ºC
-        </h1>
+          <!-- Temperatura -->
+        <div class="column py-auto">
+            <h3 class="title has-text-dark is-5">Temp. Actual</h3>
+            <h1 class="title has-text-dark is-1 py-auto temp-val"> {{ this.tempValue }}ºC</h1>
+        </div>
       </div>
 
-      <hr>
+      <hr style="margin-top: 10px; margin-bottom: 10px;"/>
 
       <!-- DATA - PARTE INFERIOR -->
       <div class="mx-2">
+
+        <!-- Humedad y viento -->
         <div class="columns is-mobile mb-5">
           <div class="column">
-            <h3 class="title has-text-light is-5">Humedad</h3>
-            <p class="has-text-light subtitle is-4 pt-2">{{ this.humidity }}</p>
+            <h3 class="title has-text-dark is-5">Humedad</h3>
+            <p class="has-text-dark subtitle is-4 pt-2">{{ this.humidity }} %</p>
           </div>
           <div class="column">
-            <h3 class="title has-text-light is-5">Viento</h3>
-            <p class="has-text-light subtitle is-4 pt-2">
-              {{ this.windSpeed }}
-            </p>
+            <h3 class="title has-text-dark is-5">Viento</h3>
+            <p class="has-text-dark subtitle is-4 pt-2">{{ this.windSpeed }} m/s</p>
           </div>
         </div>
 
+        <!-- Sensacion term. max y min -->
         <div class="columns is-mobile">
           <div class="column">
-            <h3 class="has-text-light">Sensacién térmica</h3>
-            <p class="has-text-light subtitle is-4 pt-2">
-              {{ this.fellsLike }}ºC
-            </p>
+            <h3 class="title is-5 mb-3 has-text-dark">Sensacién térmica</h3>
+            <p class="has-text-dark subtitle is-4 pt-2">{{ this.fellsLike }} ºC</p>
           </div>
           <div class="column">
-            <h3 class="has-text-light">Temp. max</h3>
-            <p class="has-text-light subtitle is-4 pt-2">{{ this.tempMax }} ºC</p>
+            <h3 class="title is-5 mb-3 has-text-dark">Temp. max</h3>
+            <p class="has-text-dark subtitle is-4 pt-2">{{ this.tempMax }} ºC</p>
           </div>
           <div class="column">
-            <h3 class="has-text-light">Temp. min</h3>
-            <p class="has-text-light subtitle is-4 pt-2">{{ this.tempMin }}ºC</p>
+            <h3 class="title is-5 mb-3 has-text-dark">Temp. min</h3>
+            <p class="has-text-dark subtitle is-4 pt-2">{{ this.tempMin }} ºC</p>
           </div>
         </div>
+
         <br />
       </div>
     </div>
 
-    <!-- <Footer /> -->
+    <hr>
+
+    <!-- LISTA DE ACTIVIDADES -->
+
+    <div class="BGGlass p-6 mx-2" style="background-opacity='0.5'">
+      <h2 class="title is-2">¿Qué puedes hacer en un dia como hoy?
+         <hr style="width: 40%;">
+      </h2>
+
+      <div class="" id="containerActividades">
+        <div v-for="item in Articulos" :key="item">
+          <div class="cardActividades card columns  mb-3 p-0">
+            <div class="column imagenArticulos p-0">
+            </div>
+            <div class="column mb-4">
+              <h2 class="title mb-0">{{item.title}} <p class="subtitle categoryBox">{{item.category}}</p> </h2>
+              <p class="mb-2">{{item.date}}</p>
+              <p class="subtitle">{{item.description}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FORM ALGO MAS? -->
+    <div class="container mt-4 containerFormMas">
+      <h3 class="title ">Se te ocurre algo mas?</h3>
+      <div>
+        <!-- TITULO -->
+        <div class="field">
+          <label class="label title is-4">Name</label>
+            <div class="control">
+            <input class="input" type="text" placeholder="Titulo de tu actividad">
+            </div>
+        </div>
+
+        <!-- DESCRIPCION -->
+        <div class="field">
+          <label class="label title is-4">Descripcion</label>
+          <div class="control">
+            <textarea class="textarea" placeholder="Descripcion de tu actividad"></textarea>
+          </div>
+        </div>
+
+        <!-- CATEGORIA -->
+        <div class="field">
+          <label class="label title is-4">Categoria</label>
+          <div class="control">
+            <label class="radio">
+              <input type="radio" >deporte
+            </label>
+            <label class="radio">
+              <input type="radio" >ocio
+            </label>
+            <label class="radio">
+              <input type="radio" >relax
+            </label>
+            <label class="radio">
+              <input type="radio" >skills
+            </label>
+          </div>
+        </div>
+
+        <!-- WEATHER -->
+        <div class="field">
+          <label class="label title is-4">El tiempo</label>
+            <div class="control">
+              <div class="select">
+                <select>
+                  <option>soleado</option>
+                  <option>algo de nubes</option>
+                  <option>lloviendo</option>
+                  <option>tormenta</option>
+                  <option>huracan</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- SUBMIT -->
+          <div>
+              <button class="button is-large is-fullwidth is-link">Submit</button>
+          </div>
+
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <Footer />
   </div>
 </template>
 
@@ -88,6 +182,11 @@ export default {
   name: "HomeView",
   data() {
     return {
+      today: {
+        day: "",
+        month: "",
+        year:""
+      },
       city: "",
       heading: "",
       tempValue: "",
@@ -97,6 +196,45 @@ export default {
       fellsLike: "",
       tempMax: "",
       tempMin: "",
+      Articulos:[
+        {title: 'Piscina',
+        date: '12/12/20',
+        description: 'Ir a la casa de un amigo y bañarte en su piscina.',
+        category: 'relax',
+        weather:'algo de nubes'
+        },
+        {title: 'Playa',
+        date: '19/02/21',
+        description: 'Hay un millon de playas por toda Malaga para poder veranear.',
+        category: 'relax',
+        weather:'algo de nubes'
+        },
+        {title: 'Deporte',
+        date: '12/03/21',
+        description: 'Prueba ese deporte que nunca te atreviste a hacer.',
+        category: 'deporte',
+        weather:'algo de nubes'
+        },
+        {title: 'Practicar artes culinarias',
+        date: '07/104/21',
+        description: 'Algo nuevo para comer, llenar la nevera de nuevos productos y experimentar.',
+        category: 'skills',
+        weather:'algo de nubes'
+        },
+        {title: 'Maraton de peliculas - Series',
+        date: '19/07/20',
+        description: 'Tumbarse tranquilamente en el sofa y ver hasta el ultimo capitulo de tu serie favorita o revivir esa saga de peliculas que un dia te cautivó.',
+        category: 'ocio',
+        weather:'algo de nubes'
+        },
+        {title: 'Estudiar',
+        date: '02/08/20',
+        description: 'Aprovechar el tiempo para afrontar nuevos retos. ',
+        category: 'skills',
+        weather:'algo de nubes'
+        },
+
+      ],
       BGGeneral: "backgroundDefaul",
       TodosBG:
         "backgroundMalaga, backgroundHuelva, backgroundAndorra, backgroundGalicia, backgroundLondres, backgroundMadrid, backgroundNoruega, backgroundSahara",
@@ -105,12 +243,11 @@ export default {
   components: {
     Footer,
   },
+  mounted(){
+   this.takedates();
+  },
 
   methods: {
-    cambioBG() {
-      this.BGGeneral = "";
-      this.BGGeneral = "backgroundNoruega";
-    },
     comprovateBG: function () {
       if (this.city == "Málaga") {
         this.BGGeneral = "backgroundMalaga";
@@ -132,6 +269,13 @@ export default {
         this.BGGeneral = "backgroundDefaul";
       }
     },
+    takedates: function(){
+     let today1 = new Date();
+     this.today.day = today1.getDate();
+     this.today.month = today1.getMonth();
+     this.today.year = today1.getFullYear();
+     console.log("he cargado la fecha de hoy")
+   }
   },
   computed: {},
   watch: {
@@ -150,10 +294,23 @@ export default {
       this.comprovateBG();
     },
   },
+
 };
 </script>
 
 <style scoped>
+@import "./CssHomeView.css";
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
+}
+
 .backgroundMalaga {
   background: url("https://media.istockphoto.com/photos/malaga-spain-cityscape-view-of-malaga-plaza-de-toros-de-ronda-in-picture-id1017217230?k=20&m=1017217230&s=612x612&w=0&h=joQ8VT3LUTJiuEQK3fPbbCph08HyjMp1XMbw1dWFER0=")
     no-repeat center / cover;
@@ -191,14 +348,7 @@ export default {
     no-repeat center / cover;
 }
 
-.BGGlass {
-  background-color: rgba(255, 255, 255, 0.26);
-  backdrop-filter: blur(5px);
-}
 
-.simple-shadow {
-  text-shadow: 5px 5px 15px black;
-}
 
 #BGGeneral2 {
   /* BG adicional, por si no te convencen */
@@ -208,10 +358,5 @@ export default {
   background-position: center;
   background-size: cover;
 }
-#BGGeneral {
-  background-image: url(https://i.pinimg.com/originals/21/5c/7f/215c7fdca6033092baa04b35c17466bd.gif);
-  min-height: 100vh;
-  background-position: center;
-  background-size: cover;
-}
+
 </style>
